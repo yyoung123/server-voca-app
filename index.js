@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   // res.send("hello crud :)");
-  res.render("hello voca-app");
+  res.send("hello voca-app");
 });
 app.post("/day/add", (req, res) => {
   // 여기에 day로 들어오는 값을 받아서 db에 밀어넣기.
