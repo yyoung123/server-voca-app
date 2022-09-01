@@ -1,0 +1,77 @@
+@mixin ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin multiEllipsis($line: 3, $lineHeight: 1.5) {
+  display: -webkit-box;
+  height: ($lineHeight * 1em * $line);
+  overflow: hidden;
+  line-height: $lineHeight;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  /*autoprefixer: off*/
+}
+
+@mixin absCenter($horizontal: true, $vertical: true) {
+  position: absolute;
+  @if ($horizontal and $vertical) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } @else if($horizontal) {
+    left: 50%;
+    transform: translateX(-50%);
+  } @else if($vertical) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+// if, for
+@mixin longShadow($shadowColor: rgba(0, 0, 0, 1), $limit: 20) {
+  $shadow: "";
+  @for $i from 1 to ($limit - 1) {
+    $shadow: $shadow + $i + "px " + $i + "px 0px " + $shadowColor + ",";
+  }
+  $shadow: $shadow + $limit + "px " + $limit + "px 0px " + $shadowColor;
+  $shadow: unquote($shadow);
+  text-shadow: $shadow;
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+@mixin box($w: 10px, $h: 10px, $bg: #000) {
+  display: block;
+  width: $w;
+  height: $h;
+  background-color: $bg;
+}
+@mixin icon($code, $margin: 10px) {
+  font-family: "Material Icons";
+  content: $code;
+  display: inline-block;
+  margin-left: $margin;
+}
+
+// @mixin absVerticalCenter {
+//   position: absolute;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
+// @mixin absHorizonCenter {
+//   position: absolute;
+//   left: 50%;
+//   transform: translateX(-50%);
+// }
+// @mixin absBothCenter {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translateY(-50%, -50%);
+// }
